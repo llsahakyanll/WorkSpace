@@ -29,15 +29,8 @@ public class UserServiceImpl implements  UserService{
 
     @Override
     @Transactional
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
-
-    @Override
-    @Transactional
     public void saveUser(User user) {
         System.out.println("saveUser Method");
-        user.setDate(dateService.askDate());
         user.setEnabled(true);
         List<Authority> list = new ArrayList<>();
         Authority authority = authorityRepository.findById(1L).orElse(null);
@@ -61,17 +54,17 @@ public class UserServiceImpl implements  UserService{
     @Override
     @Transactional
     public boolean checkUser(User user) {
-        return !(userRepository.existsByEmail(user.getEmail()) || userRepository.existsByPhoneNumber(user.getPhoneNumber()));
+        return !(userRepository.existsByEmail(user.getEmail()));
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByEmail(username);
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
         return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
+                user.getEmail(),
                 user.getPassword(),
                 getAuthority(user.getAuthorities())
         );

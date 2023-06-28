@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    max-width: 1290px;
+    margin: 0 auto;
+    height: 40px;
+    background: var(--brand-primary, #5956E9);
+    display: flex;
+    justify-content: space-between;
+}
+header > .first_part {
+    display: flex;
+    height: 100%;
+    column-gap: 5px;
+
+}
+header > .first_part > ul {
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+}
+header > .first_part > ul > li {
+    list-style: none;
+}

@@ -20,10 +20,36 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(min = 3, max = 20)
-    @Column(name = "username")
-    private String username;
-    @NotBlank(message = "This input cannot be empty.")
+
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @Column(name = "company_or_user", nullable = false)
+    private boolean isCompany;
+
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private UserDetails userDetails;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private CompanyDetails companyDetails;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_authority",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "authority_id") }
+    )
+    private List<Authority> authorities;
+}
+
+/*
+*   @NotBlank(message = "This input cannot be empty.")
     @Size(min = 3, max = 20)
     @Column(name = "first_name")
     private String firstName;
@@ -47,17 +73,15 @@ public class User {
     private String password;
     @Column(name = "gender")
     private String gender;
-    @Column(name = "date")
+    @NotBlank(message = "Birthdate is required")
+    @Column(name = "birthdate")
+    private String birthdate;
+    @Column(name = "created_at_date")
     @EqualsAndHashCode.Exclude
-    private String date;
-    @Column(name = "enabled")
-    private boolean enabled;
+    private String createdAtDate;
+    @NotBlank(message = "CV PDF is required")
+    @Size(max = 255, message = "CV PDF must be less than or equal to 255 characters")
+    @Column(name = "cv_pdf")
+    private String cvPdf;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_authority",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "authority_id") }
-    )
-    private List<Authority> authorities;
-}
+* */

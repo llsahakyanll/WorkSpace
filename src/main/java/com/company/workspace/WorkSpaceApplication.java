@@ -17,8 +17,8 @@ public class WorkSpaceApplication extends WebMvcConfigurerAdapter {
     }
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        if (!registry.hasMappingForPattern("/assets/**")) {
-            registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/");
+        if (!registry.hasMappingForPattern("/static/**")) {
+            registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
         }
     }
 }
