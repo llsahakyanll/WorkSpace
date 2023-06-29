@@ -1,5 +1,6 @@
-package com.company.workspace.service;
+package com.company.workspace.service.email;
 
+import com.company.workspace.service.verification.VerificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

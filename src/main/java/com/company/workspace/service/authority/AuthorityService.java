@@ -1,4 +1,4 @@
-package com.company.workspace.service;
+package com.company.workspace.service.authority;
 
 import com.company.workspace.entity.Authority;
 

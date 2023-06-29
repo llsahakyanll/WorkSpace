@@ -4,6 +4,7 @@ import com.company.workspace.validator.CheckEmail;
 import com.company.workspace.validator.Password;
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -21,9 +22,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "This input cannot be empty.")
+    @Email
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    @NotBlank(message = "This input cannot be empty.")
+    @Password
     @Column(name = "password", nullable = false)
     private String password;
 
@@ -47,41 +52,3 @@ public class User {
     )
     private List<Authority> authorities;
 }
-
-/*
-*   @NotBlank(message = "This input cannot be empty.")
-    @Size(min = 3, max = 20)
-    @Column(name = "first_name")
-    private String firstName;
-    @NotBlank(message = "This input cannot be empty.")
-    @Size(min = 3, max = 20)
-    @Column(name = "last_name")
-    private String lastName;
-    @NotBlank
-    @Pattern(regexp = "\\+\\d{3}-\\d{2}-\\d{3}-\\d{3}", message = "Please use pattern +XXX-XX-XXX-XXX")
-    @Column(name = "phone_number")
-    private String phoneNumber;
-    @NotBlank
-    @Column(name = "email", unique = true)
-    @CheckEmail
-    private String email;
-    @NotBlank
-    @Password
-    @Column(name = "password")
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    private String password;
-    @Column(name = "gender")
-    private String gender;
-    @NotBlank(message = "Birthdate is required")
-    @Column(name = "birthdate")
-    private String birthdate;
-    @Column(name = "created_at_date")
-    @EqualsAndHashCode.Exclude
-    private String createdAtDate;
-    @NotBlank(message = "CV PDF is required")
-    @Size(max = 255, message = "CV PDF must be less than or equal to 255 characters")
-    @Column(name = "cv_pdf")
-    private String cvPdf;
-
-* */

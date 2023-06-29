@@ -1,4 +1,4 @@
-package com.company.workspace.service;
+package com.company.workspace.service.verification;
 
 import org.springframework.stereotype.Service;
 import java.util.Random;

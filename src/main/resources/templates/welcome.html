@@ -7,41 +7,63 @@
 </head>
 <body>
     <header>
-        <div class="first_part">
-            <ul>
-                <div>
-                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11.9766 9.57031L11.4141 11.9375C11.3438 12.2891 11.0625 12.5234 10.7109 12.5234C4.80469 12.5 0 7.69531 0 1.78906C0 1.4375 0.210938 1.15625 0.5625 1.08594L2.92969 0.523438C3.25781 0.453125 3.60938 0.640625 3.75 0.945312L4.85156 3.5C4.96875 3.80469 4.89844 4.15625 4.64062 4.34375L3.375 5.375C4.17188 6.99219 5.48438 8.30469 7.125 9.10156L8.15625 7.83594C8.34375 7.60156 8.69531 7.50781 9 7.625L11.5547 8.72656C11.8594 8.89062 12.0469 9.24219 11.9766 9.57031Z" fill="white"/>
+        <div class="main_header">
+            <div class="phone_and_email">
+                <a class="phone" href=“tel:+37491612585”>
+                    <span>
+                        <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 14.75C3.11719 14.75 0 11.6328 0 7.75C0 3.89453 3.11719 0.75 7 0.75C10.8555 0.75 14 3.89453 14 7.75C14 11.6328 10.8555 14.75 7 14.75ZM6.34375 7.75C6.34375 7.96875 6.45312 8.1875 6.61719 8.29688L9.24219 10.0469C9.54297 10.2656 9.95312 10.1836 10.1445 9.88281C10.3633 9.58203 10.2812 9.17188 9.98047 8.95312L7.65625 7.42188V4.03125C7.65625 3.67578 7.35547 3.375 6.97266 3.375C6.61719 3.375 6.31641 3.67578 6.31641 4.03125L6.34375 7.75Z"
+                                  fill="white"/>
+                        </svg>
+                    </span>
+                    Phone: (374) 91-612-585
+                </a>
+                <a class="email" href="mailto: sahakyansahak303@gmail.com">
+                <span>
+                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.875 0C11.4844 0 12 0.515625 12 1.125C12 1.5 11.8125 1.82812 11.5312 2.03906L6.44531 5.85938C6.16406 6.07031 5.8125 6.07031 5.53125 5.85938L0.445312 2.03906C0.164062 1.82812 0 1.5 0 1.125C0 0.515625 0.492188 0 1.125 0H10.875ZM5.08594 6.46875C5.625 6.86719 6.35156 6.86719 6.89062 6.46875L12 2.625V7.5C12 8.34375 11.3203 9 10.5 9H1.5C0.65625 9 0 8.34375 0 7.5V2.625L5.08594 6.46875Z" fill="white"/>
                     </svg>
-                    <span>Phone</span>
+                </span>
+                    Email: sahakyansahak303@gmail.com
+                </a>
+            </div>
+            <div class="social">
+                <p>Social:</p>
+                <span></span>
+                <div class="social_div">
+                    <a href="#">
+                        <img th:src="@{../static/img/facebook.png}" alt="Nkar">
+                    </a>
+                    <a href="#">
+                        <img th:src="@{../static/img/insta.png}" alt="Nkar">
+                    </a>
+                    <a href="#">
+                        <img th:src="@{../static/img/twitter.png}" alt="Nkar">
+                    </a>
+                    <a href="#">
+                        <img th:src="@{../static/img/link.png}" alt="Nkar">
+                    </a>
                 </div>
-                <li><a href="#">091-55-77-72</a></li>
-                <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10.875 0C11.4844 0 12 0.515625 12 1.125C12 1.5 11.8125 1.82812 11.5312 2.03906L6.44531 5.85938C6.16406 6.07031 5.8125 6.07031 5.53125 5.85938L0.445312 2.03906C0.164062 1.82812 0 1.5 0 1.125C0 0.515625 0.492188 0 1.125 0H10.875ZM5.08594 6.46875C5.625 6.86719 6.35156 6.86719 6.89062 6.46875L12 2.625V7.5C12 8.34375 11.3203 9 10.5 9H1.5C0.65625 9 0 8.34375 0 7.5V2.625L5.08594 6.46875Z" fill="white"/>
-                </svg>
-                <li><a href="#">Email: ericsarukhanyan@gmail.com</a></li>
-            </ul>
-
-
+            </div>
         </div>
-        <div class="first_part">
-            <ul>
-                <div>
-                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11.9766 9.57031L11.4141 11.9375C11.3438 12.2891 11.0625 12.5234 10.7109 12.5234C4.80469 12.5 0 7.69531 0 1.78906C0 1.4375 0.210938 1.15625 0.5625 1.08594L2.92969 0.523438C3.25781 0.453125 3.60938 0.640625 3.75 0.945312L4.85156 3.5C4.96875 3.80469 4.89844 4.15625 4.64062 4.34375L3.375 5.375C4.17188 6.99219 5.48438 8.30469 7.125 9.10156L8.15625 7.83594C8.34375 7.60156 8.69531 7.50781 9 7.625L11.5547 8.72656C11.8594 8.89062 12.0469 9.24219 11.9766 9.57031Z" fill="white"/>
-                    </svg>
-                    <span>Phone</span>
-                </div>
-                <li><a href="#">091-55-77-72</a></li>
-                <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10.875 0C11.4844 0 12 0.515625 12 1.125C12 1.5 11.8125 1.82812 11.5312 2.03906L6.44531 5.85938C6.16406 6.07031 5.8125 6.07031 5.53125 5.85938L0.445312 2.03906C0.164062 1.82812 0 1.5 0 1.125C0 0.515625 0.492188 0 1.125 0H10.875ZM5.08594 6.46875C5.625 6.86719 6.35156 6.86719 6.89062 6.46875L12 2.625V7.5C12 8.34375 11.3203 9 10.5 9H1.5C0.65625 9 0 8.34375 0 7.5V2.625L5.08594 6.46875Z" fill="white"/>
-                </svg>
-                <li><a href="#">Email: ericsarukhanyan@gmail.com</a></li>
-            </ul>
-
-
-        </div>
-
     </header>
+    <main>
+        <span>
+            <img th:src="@{../static/img/bg.png}" alt="bg">
+        </span>
+        <section>
+            <div class="text_div">
+                <p class="welcome">Welcome Our Website</p>
+                <p class="text">A merger is a combination of two or more companies into a single entity, typically to achieve greater efficiency, economies of scale, or market dominance. </p>
+                <div class="buttons">
+                    <a th:href="@{/login}">Log In</a>
+                    <a th:href="@{/registration}">Registration</a>
+                </div>
+            </div>
+            <span class="img">
+                <img th:src="@{../static/img/Marduk.png}" alt="Marduk">
+            </span>
+        </section>
+    </main>
 </body>
 </html>

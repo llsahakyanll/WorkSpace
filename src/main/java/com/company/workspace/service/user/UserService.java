@@ -1,4 +1,4 @@
-package com.company.workspace.service;
+package com.company.workspace.service.user;
 
 import com.company.workspace.entity.User;
 import org.springframework.security.core.userdetails.UserDetailsService;

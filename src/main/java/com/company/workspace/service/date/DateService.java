@@ -1,4 +1,4 @@
-package com.company.workspace.service;
+package com.company.workspace.service.date;
 
 public interface DateService {
     String askDate();
