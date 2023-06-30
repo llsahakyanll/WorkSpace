@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link th:href="@{../static/css/welcome.css}" rel="stylesheet">
+    <link th:href="@{../static/css/loader.css}" rel="stylesheet">
 </head>
 <body>
+    <div class="loader"></div>
     <header>
         <div class="main_header">
             <div class="phone_and_email">
@@ -53,11 +55,11 @@
         </span>
         <section>
             <div class="text_div">
-                <p class="welcome">Welcome Our Website</p>
+                <p class="welcome">Welcome To Our Website</p>
                 <p class="text">A merger is a combination of two or more companies into a single entity, typically to achieve greater efficiency, economies of scale, or market dominance. </p>
                 <div class="buttons">
                     <a th:href="@{/login}">Log In</a>
-                    <a th:href="@{/registration}">Registration</a>
+                    <a th:href="@{/registration}">Sign up</a>
                 </div>
             </div>
             <span class="img">
@@ -65,5 +67,6 @@
             </span>
         </section>
     </main>
+    <script th:src="@{../static/js/loader.js}"></script>
 </body>
 </html>

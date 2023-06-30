@@ -76,5 +76,138 @@ header{
 }
 /*--------------| End Header |-----------*/
 /*--------------| Main |-----------*/
-
+body{
+    height: 100vh;
+    background: #1E266E;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+main > span {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 80%;
+}
+main > span > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+main > section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1290px;
+    margin: 0 auto;
+}
+.text_div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 27px;
+    width: 670px;
+}
+.welcome {
+    width: 100%;
+    font-size: 95px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100px;
+    color: #ffffff;
+}
+.text {
+    color: white;
+    font-size: 18px;
+    font-style: normal;
+    width: 100%;
+    font-weight: 400;
+    line-height: 32px;
+}
+.buttons {
+    display: flex;
+    align-items: center;
+    column-gap: 27px;
+}
+.buttons > a {
+    color: #FFF;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 70px;
+    background: #5956E9;
+    transition: .3s ease;
+    border: 1px solid #5956e9;
+}
+.buttons > a:hover {
+    color: #5956E9;
+    background: #FFF;
+}
+.buttons > :nth-child(2) {
+    color: #5956E9 !important;
+    background: #FFF !important;
+}
+.buttons > :nth-child(2):hover {
+    color: white !important;
+    background: #5956E9 !important;
+}
+.img {
+    width: 576px;
+    height: 574px;
+}
+.img > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 /*--------------| End Main |-----------*/
+@media screen and (max-width: 1390px) {
+    .welcome {
+        font-size: 40px;
+        font-weight: 700;
+        line-height: unset;
+        color: #ffffff;
+    }
+    .text_div {
+        row-gap: 20px;
+    }
+    .text {
+        font-size: 15px;
+    }
+    .buttons > a {
+        font-size: 15px;
+        width: 160px;
+        height: 50px;
+    }
+    .img {
+        width: 400px !important;
+        height: 400px !important;
+    }
+}
+@media screen and (max-width: 1320px) {
+    .main_header {
+        max-width: unset;
+        margin: unset;
+        padding: 0 30px;
+    }
+    main > section {
+        max-width: unset;
+        margin: unset;
+        padding: 0 30px;
+    }
+}
+@media screen and (max-width: 1130px) {
+    .text_div {
+        width: 488px;
+    }
+}

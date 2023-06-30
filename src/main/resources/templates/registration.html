@@ -2,9 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link th:href="@{../static/css/registration.css}" rel="stylesheet">
+    <link th:href="@{../static/css/loader.css}" rel="stylesheet">
+    <title>Registration</title>
 </head>
 <body>
-
+    <div class="loader"></div>
+    <header>
+    <div class="main_header">
+        <div class="phone_and_email">
+            <a class="phone" href=“tel:+37491612585”>
+                    <span>
+                        <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 14.75C3.11719 14.75 0 11.6328 0 7.75C0 3.89453 3.11719 0.75 7 0.75C10.8555 0.75 14 3.89453 14 7.75C14 11.6328 10.8555 14.75 7 14.75ZM6.34375 7.75C6.34375 7.96875 6.45312 8.1875 6.61719 8.29688L9.24219 10.0469C9.54297 10.2656 9.95312 10.1836 10.1445 9.88281C10.3633 9.58203 10.2812 9.17188 9.98047 8.95312L7.65625 7.42188V4.03125C7.65625 3.67578 7.35547 3.375 6.97266 3.375C6.61719 3.375 6.31641 3.67578 6.31641 4.03125L6.34375 7.75Z"
+                                  fill="white"/>
+                        </svg>
+                    </span>
+                Phone: (374) 91-612-585
+            </a>
+            <a class="email" href="mailto: sahakyansahak303@gmail.com">
+                <span>
+                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.875 0C11.4844 0 12 0.515625 12 1.125C12 1.5 11.8125 1.82812 11.5312 2.03906L6.44531 5.85938C6.16406 6.07031 5.8125 6.07031 5.53125 5.85938L0.445312 2.03906C0.164062 1.82812 0 1.5 0 1.125C0 0.515625 0.492188 0 1.125 0H10.875ZM5.08594 6.46875C5.625 6.86719 6.35156 6.86719 6.89062 6.46875L12 2.625V7.5C12 8.34375 11.3203 9 10.5 9H1.5C0.65625 9 0 8.34375 0 7.5V2.625L5.08594 6.46875Z" fill="white"/>
+                    </svg>
+                </span>
+                Email: sahakyansahak303@gmail.com
+            </a>
+        </div>
+        <div class="social">
+            <p>Social:</p>
+            <span></span>
+            <div class="social_div">
+                <a href="#">
+                    <img th:src="@{../static/img/facebook.png}" alt="Nkar">
+                </a>
+                <a href="#">
+                    <img th:src="@{../static/img/insta.png}" alt="Nkar">
+                </a>
+                <a href="#">
+                    <img th:src="@{../static/img/twitter.png}" alt="Nkar">
+                </a>
+                <a href="#">
+                    <img th:src="@{../static/img/link.png}" alt="Nkar">
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+    <main>
+        <div class="sign_user">
+            <span>
+                <img th:src="@{../static/img/emplo.png}" alt="Employee">
+            </span>
+            <a th:href="@{/registration/user}">Sign up as User</a>
+        </div>
+        <span class="hr"></span>
+        <div class="sign_company">
+            <span>
+                <img th:src="@{../static/img/work.png}" alt="Employee">
+            </span>
+            <a th:href="@{/registration/company}">Sign up as Company</a>
+        </div>
+    </main>
+    <script th:src="@{../static/js/loader.js}"></script>
 </body>
 </html>

@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+p,a,h1{
+    font-family: 'DM Sans', sans-serif;
+}
+a {
+    text-decoration:none;
+}
+/*--------------| Header |-----------*/
+header{
+    background: #5956e9;
+    height: 40px;
+}
+.main_header {
+    max-width: 1290px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    height: 100%;
+}
+.phone_and_email {
+    display: flex;
+    align-items: baseline;
+    column-gap: 30px;
+}
+.phone,.email {
+    display:flex;
+    align-items:center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    color: #fff;
+    column-gap: 5px;
+}
+.phone > span,.email > span {
+    width: 12px;
+    height: 12px;
+}
+.social {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+.phone > span > svg,
+.email > span > svg{
+    width: 12px;
+    height: 12px;
+}
+.social > p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+    color: white;
+}
+.social > span {
+    width: 2px;
+    height: 40px;
+    background: #808285;
+    margin-right: 12px;
+}
+.social_div {
+    display: flex;
+    align-items: center;
+    column-gap: 25px;
+}
+.social_div > a {
+    width: 15px;
+    height: 15px;
+}
+/*--------------| End Header |-----------*/
+/*--------------| Main |-----------*/
+body{
+    height: 100vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background: #1E266E;
+}
+main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.sign_user,
+.sign_company {
+    width: 49%;
+}
+.hr {
+    width: 3px;
+    height: 100%;
+    background: #808285;
+}
+.sign_user > a,
+.sign_company > a{
+    color: #FFF;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 210px;
+    height: 70px;
+    background: #5956E9;
+    transition: .3s ease;
+    border: 1px solid #5956e9;
+}
+.sign_user > a:hover {
+    color: #5956E9;
+    background: #FFF;
+}
+.sign_company > a:hover{
+    color: #5956E9;
+    background: #FFF;
+}
+
+.sign_user ,
+.sign_company {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    justify-content: center;
+    width: 630px;
+    row-gap: 40px;
+    height: 500px;
+    margin: 0 auto;
+}
