@@ -39,4 +39,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     public void saveUserDetails(UserDetails userDetails) {
         userDetailsRepository.save(userDetails);
     }
+
+    @Override
+    public UserDetails createUserDetails() {
+        return new UserDetails();
+    }
 }

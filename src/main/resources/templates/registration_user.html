@@ -2,9 +2,96 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{../static/css/loader.css}" rel="stylesheet">
+    <link th:href="@{../static/css/registration_user.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
     <title>Title</title>
 </head>
 <body>
-
+    <div class="loader"></div>
+    <div class="container">
+        <header>Registration</header>
+        <form th:action="@{/registration/user}" method="post">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Personal Details</span>
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>First Name</label>
+                            <input type="text" placeholder="Enter your first name" th:field="*{userDetails.firstName}" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Last Name</label>
+                            <input type="text" placeholder="Enter your last name" th:field="*{userDetails.lastName}" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="text" placeholder="Enter your email" th:field="*{userForUser.email}" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Mobile Number</label>
+                            <input type="number" placeholder="Enter mobile number" th:field="*{userDetails.phoneNumber}" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Gender</label>
+                            <input class="dot-1" type="radio" th:field="*{userDetails.gender}" id="dot-1" value="MALE">
+                            <input class="dot-2" type="radio" th:field="*{userDetails.gender}" id="dot-2" value="FEMALE">
+                            <input class="dot-3" type="radio" th:field="*{userDetails.gender}" id="dot-3" value="NO_ONE">
+                            <div class="category">
+                                <label for="dot-1">
+                                    <span class="dot one"></span>
+                                    <span class="gender">Արական</span>
+                                </label>
+                                <label for="dot-2">
+                                    <span class="dot two"></span>
+                                    <span class="gender">Իգական</span>
+                                </label>
+                                <label for="dot-3">
+                                    <span class="dot three"></span>
+                                    <span class="gender">Նախընտրում եմ չասել</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <label>Date of Birth</label>
+                            <input type="date" placeholder="Enter birth date" th:field="*{userDetails.birthDate}" required>
+                        </div>
+                    </div>
+                </div>
+                <button class="nextBtn">
+                    <span class="btnText">Next</span>
+                    <i class="uil uil-navigator"></i>
+                </button>
+            </div>
+            <div class="form second">
+                <div class="details address">
+                    <span class="title">Important Files</span>
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>CV</label>
+                            <input type="file" id="pdfFile" name="pdfFile" accept=".pdf">
+                        </div>
+                        <div class="input-field">
+                            <label>Your Photo</label>
+                            <input type="file" id="imageFile" name="imageFile" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <div class="backBtn">
+                        <i class="uil uil-navigator"></i>
+                        <span class="btnText">Back</span>
+                    </div>
+                    <button class="sumbit">
+                        <span class="btnText">Submit</span>
+                        <i class="uil uil-navigator"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+<script th:src="@{../static/js/loader.js}"></script>
+<script th:src="@{../static/js/registration_user.js}"></script>
 </body>
 </html>

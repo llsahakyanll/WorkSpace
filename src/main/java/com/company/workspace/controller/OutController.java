@@ -1,6 +1,7 @@
 package com.company.workspace.controller;
 
 import com.company.workspace.service.user.UserService;
+import com.company.workspace.service.userDetails.UserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class OutController {
 
     private final UserService userService;
+    private final UserDetailsService userDetailsService;
 
     @GetMapping("/login")
     public String login() {
@@ -25,6 +27,7 @@ public class OutController {
     @GetMapping("/registration/user")
     public String registrationAsUser(Model model) {
         model.addAttribute("userForUser", userService.createUser());
+        model.addAttribute("userDetails", userDetailsService.createUserDetails());
         return "registration_user";
     }
 
