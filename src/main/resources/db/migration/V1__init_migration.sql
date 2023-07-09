@@ -22,13 +22,14 @@ CREATE TABLE users
 );
 CREATE TABLE user_details
 (
-    id                BIGINT PRIMARY KEY,
-    firs_name         VARCHAR(255) NOT NULL,
+    id                BIGINT PRIMARY KEY ,
+    first_name         VARCHAR(255) NOT NULL,
     last_name         VARCHAR(255) NOT NULL,
     registration_date VARCHAR(255) NOT NULL,
     birth_date        VARCHAR(255) NOT NULL,
     cv_pdf            VARCHAR(255) NOT NULL,
     phone_number      VARCHAR(255) NOT NULL,
+    image              BLOB         NOT NULL,
     gender            VARCHAR(255) NOT NULL,
     FOREIGN KEY (id) REFERENCES users (id)
 );

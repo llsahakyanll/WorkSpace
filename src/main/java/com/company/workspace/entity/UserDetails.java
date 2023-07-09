@@ -14,8 +14,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class UserDetails {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "This input cannot be empty.")
@@ -28,7 +31,6 @@ public class UserDetails {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @NotBlank
     @EqualsAndHashCode.Exclude
     @Column(name = "registration_date", nullable = false)
     private String registrationDate;
@@ -38,7 +40,6 @@ public class UserDetails {
     @Column(name = "birth_date", nullable = false)
     private String birthDate;
 
-    @NotBlank(message = "CV PDF is required")
     @Size(max = 255, message = "CV PDF must be less than or equal to 255 characters")
     @Column(name = "cv_pdf", nullable = false)
     private String cvPdf;
@@ -51,6 +52,10 @@ public class UserDetails {
     @NotBlank
     @Column(name = "gender", nullable = false)
     private String gender;
+
+    @Lob
+    @Column(name = "image", nullable = false)
+    private byte[] image;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")

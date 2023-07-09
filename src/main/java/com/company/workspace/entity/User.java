@@ -1,14 +1,10 @@
 package com.company.workspace.entity;
 
-import com.company.workspace.validator.CheckEmail;
 import com.company.workspace.validator.Password;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,6 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +28,11 @@ public class User {
     @Password
     @Column(name = "password", nullable = false)
     private String password;
+
+    @NotBlank(message = "This input cannot be empty.")
+    @Password
+    @Transient
+    private String passwordRepeat;
 
     @Column(name = "company_or_user", nullable = false)
     private boolean isCompany;

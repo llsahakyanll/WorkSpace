@@ -10,5 +10,7 @@ public interface UserDetailsService {
     void deleteByUser(User user);
     boolean existsAllByUser(User user);
     void saveUserDetails(UserDetails userDetails);
+    void save(UserDetails userDetails);
+    void setUser(UserDetails userDetails, User user);
     UserDetails createUserDetails();
 }

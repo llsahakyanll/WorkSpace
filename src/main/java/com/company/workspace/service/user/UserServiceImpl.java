@@ -59,6 +59,11 @@ public class UserServiceImpl implements  UserService{
     }
 
     @Override
+    public void setUserDetails(User user, com.company.workspace.entity.UserDetails userDetails) {
+        user.setUserDetails(userDetails);
+    }
+
+    @Override
     public User createUser() {
         return new User();
     }

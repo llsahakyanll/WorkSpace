@@ -5,93 +5,100 @@
     <link th:href="@{../static/css/loader.css}" rel="stylesheet">
     <link th:href="@{../static/css/registration_user.css}" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
     <title>Title</title>
 </head>
 <body>
-    <div class="loader"></div>
-    <div class="container">
-        <header>Registration</header>
-        <form th:action="@{/registration/user}" method="post">
-            <div class="form first">
-                <div class="details personal">
-                    <span class="title">Personal Details</span>
-                    <div class="fields">
-                        <div class="input-field">
-                            <label>First Name</label>
-                            <input type="text" placeholder="Enter your first name" th:field="*{userDetails.firstName}" required>
-                        </div>
-                        <div class="input-field">
-                            <label>Last Name</label>
-                            <input type="text" placeholder="Enter your last name" th:field="*{userDetails.lastName}" required>
-                        </div>
-                        <div class="input-field">
-                            <label>Email</label>
-                            <input type="text" placeholder="Enter your email" th:field="*{userForUser.email}" required>
-                        </div>
-                        <div class="input-field">
-                            <label>Mobile Number</label>
-                            <input type="number" placeholder="Enter mobile number" th:field="*{userDetails.phoneNumber}" required>
-                        </div>
-                        <div class="input-field">
-                            <label>Gender</label>
-                            <input class="dot-1" type="radio" th:field="*{userDetails.gender}" id="dot-1" value="MALE">
-                            <input class="dot-2" type="radio" th:field="*{userDetails.gender}" id="dot-2" value="FEMALE">
-                            <input class="dot-3" type="radio" th:field="*{userDetails.gender}" id="dot-3" value="NO_ONE">
-                            <div class="category">
-                                <label for="dot-1">
-                                    <span class="dot one"></span>
-                                    <span class="gender">Արական</span>
-                                </label>
-                                <label for="dot-2">
-                                    <span class="dot two"></span>
-                                    <span class="gender">Իգական</span>
-                                </label>
-                                <label for="dot-3">
-                                    <span class="dot three"></span>
-                                    <span class="gender">Նախընտրում եմ չասել</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="input-field">
-                            <label>Date of Birth</label>
-                            <input type="date" placeholder="Enter birth date" th:field="*{userDetails.birthDate}" required>
-                        </div>
-                    </div>
+<div class="loader"></div>
+<div class="container">
+    <header>Registration</header>
+    <form th:action="@{/registration/user}" th:object="${userDetails}" method="post">
+        <div class="details personal">
+            <span class="title">Personal Details</span>
+            <div class="fields">
+                <div class="input-field">
+                    <label for="firstName">First Name</label>
+                    <!--/*@thymesVar id="firstNameError" type="java.lang.String"*/-->
+                    <p th:text="${firstNameError}" class="error"></p>
+                    <input type="text" placeholder="Enter your first name"  id="firstName"  th:field="*{firstName}" required>
                 </div>
-                <button class="nextBtn">
-                    <span class="btnText">Next</span>
-                    <i class="uil uil-navigator"></i>
-                </button>
-            </div>
-            <div class="form second">
-                <div class="details address">
-                    <span class="title">Important Files</span>
-                    <div class="fields">
-                        <div class="input-field">
-                            <label>CV</label>
-                            <input type="file" id="pdfFile" name="pdfFile" accept=".pdf">
-                        </div>
-                        <div class="input-field">
-                            <label>Your Photo</label>
-                            <input type="file" id="imageFile" name="imageFile" accept="image/*">
-                        </div>
-                    </div>
+                <div class="input-field">
+                    <label for="last">Last Name</label>
+                    <!--/*@thymesVar id="lastNameError" type="java.lang.String"*/-->
+                    <p th:text="${lastNameError}" class="error"></p>
+                    <input type="text" id="last" placeholder="Enter your last name" th:field="*{lastName}" required>
                 </div>
-                <div class="buttons">
-                    <div class="backBtn">
-                        <i class="uil uil-navigator"></i>
-                        <span class="btnText">Back</span>
+                <div class="input-field">
+                    <label for="number">Mobile Number</label>
+                    <!--/*@thymesVar id="phoneNumberError" type="java.lang.String"*/-->
+                    <p th:text="${phoneNumberError}" class="error"></p>
+                    <input type="tel" id="number" placeholder="+XXX-XX-XXX-XXX" th:field="*{phoneNumber}"  pattern="+[0-9]{3}-[0-9]{2}-[0-9]{3}-[0-9]{3}" required>
+                </div>
+                <div class="input-field" th:object="${userForUser}">
+                    <!--/*@thymesVar id="emailError" type="java.lang.String"*/-->
+                    <label for="email">Email</label>
+                    <p th:text="${emailError}" class="error"></p>
+                    <input type="text" id="email" placeholder="Enter your email" th:field="*{email}" required>
+                </div>
+               
+                <div class="input-field" th:object="${userForUser}">
+                    <label for="password">Password</label>
+                    <!--/*@thymesVar id="passwordError" type="java.lang.String"*/-->
+                    <p th:text="${passwordError}" class="error"></p>
+                    <input type="password"  id="password" placeholder="Enter password" th:field="*{password}" required>
+                </div>
+                <div class="input-field" th:object="${userForUser}">
+                    <label for="repeat">Repeat Password</label>
+                    <!--/*@thymesVar id="passwordRepeatError" type="java.lang.String"*/-->
+                    <p th:text="${passwordRepeatError}" class="error"></p>
+                    <input type="password" id="repeat" placeholder="Enter password" th:field="*{passwordRepeat}" required>
+                </div>
+                <div class="input-field">
+                    <label for="date">Date of Birth</label>
+                    <input type="date" placeholder="Enter birth date" id="date" th:field="*{birthDate}" required>
+                </div>
+                <div class="input-field">
+                    <label>Gender</label>
+                    <input class="dot-1" type="radio" th:field="*{gender}" id="dot-1" value="MALE">
+                    <input class="dot-2" type="radio" th:field="*{gender}" id="dot-2" value="FEMALE">
+                    <div class="category">
+                        <label for="dot-1">
+                                <span class="dot one">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                         style="enable-background:new 0 0 32 32" xml:space="preserve">
+                                        <path d="M11.929 27.071a6.953 6.953 0 0 1-4.95-2.05c-1.322-1.323-2.05-3.08-2.05-4.95s.728-3.628 2.05-4.95c2.73-2.727 7.17-2.73 9.9 0 1.322 1.322 2.05 3.08 2.05 4.95s-.728 3.627-2.05 4.95a6.953 6.953 0 0 1-4.95 2.05zM8.394 16.535a4.968 4.968 0 0 0-1.465 3.536c0 1.335.52 2.591 1.465 3.535s2.2 1.465 3.535 1.465c1.336 0 2.591-.52 3.535-1.465s1.465-2.2 1.465-3.535c0-1.336-.52-2.592-1.465-3.536a5.006 5.006 0 0 0-7.07 0zM26.071 12.294a1 1 0 0 1-1-1V6.929h-4.365a1 1 0 1 1 0-2h5.365a1 1 0 0 1 1 1v5.365a1 1 0 0 1-1 1z"/><path
+                                            d="M16.171 16.828a1 1 0 0 1-.707-1.707l9.9-9.9a1 1 0 1 1 1.414 1.415l-9.9 9.9a.997.997 0 0 1-.707.292z"/>
+                                    </svg>
+                                </span>
+                        </label>
+                        <label for="dot-2">
+                                <span class="dot two">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32" xml:space="preserve"><path d="M16 20c-4.962 0-9-4.037-9-9s4.038-9 9-9 9 4.037 9 9-4.038 9-9 9zm0-16c-3.86 0-7 3.14-7 7s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7z"/><path d="M16 30a1 1 0 0 1-1-1V19a1 1 0 1 1 2 0v10a1 1 0 0 1-1 1z"/><path d="M19 26h-6a1 1 0 1 1 0-2h6a1 1 0 1 1 0 2z"/></svg>
+                                </span>
+                        </label>
                     </div>
-                    <button class="sumbit">
-                        <span class="btnText">Submit</span>
-                        <i class="uil uil-navigator"></i>
-                    </button>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
+        <div class="details address">
+            <span class="title">Important Files</span>
+            <div class="fields">
+                <div class="input-field">
+                    <label class="pdfFile" for="pdfFile">Upload Your CV</label>
+<!--                    <p th:if="${#fields.hasErrors('cvPdf')}" th:errorclass="" th:errors="*{cvPdf}" th:class="${#fields.hasErrors('cvPdf')}? error"></p>-->
+                    <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" th:field="*{cvPdf}" required>
+                </div>
+                <div class="input-field">
+                    <label class="imageFile" for="imageFile">Upload Your Photo</label>
+<!--                    <p th:if="${#fields.hasErrors('image')}" th:errorclass="image" th:errors="*{image}" th:class="${#fields.hasErrors('image')}? error"></p>-->
+                    <input type="file" id="imageFile" name="imageFile" accept="image/*" th:field="*{image}" required>
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
 <script th:src="@{../static/js/loader.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script th:src="@{../static/js/registration_user.js}"></script>
 </body>
 </html>
