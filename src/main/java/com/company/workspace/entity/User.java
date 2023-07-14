@@ -3,8 +3,6 @@ package com.company.workspace.entity;
 import com.company.workspace.validator.Password;
 import lombok.*;
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -19,31 +17,24 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "This input cannot be empty.")
-    @Email
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @NotBlank(message = "This input cannot be empty.")
-    @Password
     @Column(name = "password", nullable = false)
     private String password;
 
-    @NotBlank(message = "This input cannot be empty.")
-    @Password
     @Transient
     private String passwordRepeat;
-
-    @Column(name = "company_or_user", nullable = false)
-    private boolean isCompany;
 
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_details_id")
     private UserDetails userDetails;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_details_id")
     private CompanyDetails companyDetails;
 
     @ManyToMany(fetch = FetchType.EAGER)

@@ -13,40 +13,41 @@ CREATE TABLE authorities
 -- Create the 'users' table
 CREATE TABLE users
 (
-    id              BIGINT PRIMARY KEY AUTO_INCREMENT,
-    email           VARCHAR(255) NOT NULL,
-    password        VARCHAR(255) NOT NULL,
-    company_or_user BOOLEAN      NOT NULL,
-    enabled         BOOLEAN      NOT NULL,
-    UNIQUE INDEX email_UNIQUE (email ASC)
+    id                 BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_details_id    BIGINT,
+    company_details_id BIGINT,
+    email              VARCHAR(255) NOT NULL UNIQUE ,
+    password           VARCHAR(255) NOT NULL,
+    enabled            BOOLEAN      NOT NULL,
+    FOREIGN KEY (user_details_id) REFERENCES user_details (id),
+    FOREIGN KEY (company_details_id) REFERENCES company_details (id)
+
 );
 CREATE TABLE user_details
 (
-    id                BIGINT PRIMARY KEY ,
-    first_name         VARCHAR(255) NOT NULL,
+    id                BIGINT PRIMARY KEY AUTO_INCREMENT,
+    first_name        VARCHAR(255) NOT NULL,
     last_name         VARCHAR(255) NOT NULL,
     registration_date VARCHAR(255) NOT NULL,
     birth_date        VARCHAR(255) NOT NULL,
     cv_pdf            VARCHAR(255) NOT NULL,
-    phone_number      VARCHAR(255) NOT NULL,
-    image              BLOB         NOT NULL,
-    gender            VARCHAR(255) NOT NULL,
-    FOREIGN KEY (id) REFERENCES users (id)
+    phone_number      VARCHAR(255) NOT NULL UNIQUE ,
+    image             BLOB         NOT NULL,
+    gender            VARCHAR(255) NOT NULL
 );
 -- Create company_details table
 CREATE TABLE company_details
 (
-    id           BIGINT PRIMARY KEY,
+    id           BIGINT PRIMARY KEY AUTO_INCREMENT,
     name         VARCHAR(255) NOT NULL,
     address      VARCHAR(255) NOT NULL,
     city         VARCHAR(255) NOT NULL,
     country      VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(255) NOT NULL UNIQUE,
-    website      VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(255) NOT NULL UNIQUE ,
+    website      VARCHAR(255),
     logo         BLOB         NOT NULL,
     description  TEXT,
-    founded_year VARCHAR(255) NOT NULL,
-    FOREIGN KEY (id) REFERENCES users (id)
+    founded_year VARCHAR(255) NOT NULL
 );
 -- Create the 'user_authority' table
 CREATE TABLE user_authority

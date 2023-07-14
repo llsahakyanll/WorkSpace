@@ -5,51 +5,48 @@
     <link th:href="@{../static/css/loader.css}" rel="stylesheet">
     <link th:href="@{../static/css/registration_user.css}" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
     <title>Title</title>
 </head>
 <body>
 <div class="loader"></div>
 <div class="container">
     <header>Registration</header>
-    <form th:action="@{/registration/user}" th:object="${userDetails}" method="post">
+    <form th:action="@{/registration/user}" th:object="${userDetails}" id="registrationForm" method="post">
         <div class="details personal">
             <span class="title">Personal Details</span>
             <div class="fields">
                 <div class="input-field">
                     <label for="firstName">First Name</label>
-                    <!--/*@thymesVar id="firstNameError" type="java.lang.String"*/-->
-                    <p th:text="${firstNameError}" class="error"></p>
+                    <p class="error"></p>
                     <input type="text" placeholder="Enter your first name"  id="firstName"  th:field="*{firstName}" required>
                 </div>
                 <div class="input-field">
                     <label for="last">Last Name</label>
-                    <!--/*@thymesVar id="lastNameError" type="java.lang.String"*/-->
-                    <p th:text="${lastNameError}" class="error"></p>
+                    <p class="error"></p>
                     <input type="text" id="last" placeholder="Enter your last name" th:field="*{lastName}" required>
                 </div>
                 <div class="input-field">
                     <label for="number">Mobile Number</label>
-                    <!--/*@thymesVar id="phoneNumberError" type="java.lang.String"*/-->
-                    <p th:text="${phoneNumberError}" class="error"></p>
+                    <p class="error"></p>
                     <input type="tel" id="number" placeholder="+XXX-XX-XXX-XXX" th:field="*{phoneNumber}"  pattern="+[0-9]{3}-[0-9]{2}-[0-9]{3}-[0-9]{3}" required>
                 </div>
                 <div class="input-field" th:object="${userForUser}">
-                    <!--/*@thymesVar id="emailError" type="java.lang.String"*/-->
                     <label for="email">Email</label>
-                    <p th:text="${emailError}" class="error"></p>
+                    <p class="error"></p>
                     <input type="text" id="email" placeholder="Enter your email" th:field="*{email}" required>
                 </div>
                
                 <div class="input-field" th:object="${userForUser}">
                     <label for="password">Password</label>
-                    <!--/*@thymesVar id="passwordError" type="java.lang.String"*/-->
-                    <p th:text="${passwordError}" class="error"></p>
+                    <p class="error"></p>
                     <input type="password"  id="password" placeholder="Enter password" th:field="*{password}" required>
                 </div>
                 <div class="input-field" th:object="${userForUser}">
                     <label for="repeat">Repeat Password</label>
-                    <!--/*@thymesVar id="passwordRepeatError" type="java.lang.String"*/-->
-                    <p th:text="${passwordRepeatError}" class="error"></p>
+                    <p class="error"></p>
                     <input type="password" id="repeat" placeholder="Enter password" th:field="*{passwordRepeat}" required>
                 </div>
                 <div class="input-field">
@@ -84,12 +81,10 @@
             <div class="fields">
                 <div class="input-field">
                     <label class="pdfFile" for="pdfFile">Upload Your CV</label>
-<!--                    <p th:if="${#fields.hasErrors('cvPdf')}" th:errorclass="" th:errors="*{cvPdf}" th:class="${#fields.hasErrors('cvPdf')}? error"></p>-->
-                    <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" th:field="*{cvPdf}" required>
+                    <input type="file" id="pdfFile" name="pdfFile" accept="application/pdf" th:field="*{cvPdf}" required>
                 </div>
                 <div class="input-field">
                     <label class="imageFile" for="imageFile">Upload Your Photo</label>
-<!--                    <p th:if="${#fields.hasErrors('image')}" th:errorclass="image" th:errors="*{image}" th:class="${#fields.hasErrors('image')}? error"></p>-->
                     <input type="file" id="imageFile" name="imageFile" accept="image/*" th:field="*{image}" required>
                 </div>
             </div>
@@ -98,7 +93,6 @@
     </form>
 </div>
 <script th:src="@{../static/js/loader.js}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script th:src="@{../static/js/registration_user.js}"></script>
 </body>
 </html>

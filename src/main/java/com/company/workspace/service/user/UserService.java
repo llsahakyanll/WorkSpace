@@ -9,9 +9,8 @@ public interface UserService extends UserDetailsService {
     void saveUser(User user);
     void save(User user);
     User findById(Long id);
-    boolean checkUser(User user);
     void setUserDetails(User user, UserDetails userDetails);
     User createUser();
-}
 
-// APE INCH ?????? APE BAN !!!!!!!!
+    void checkUser(User user);
+}
