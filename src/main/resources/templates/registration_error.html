@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{../static/css/registration_error.css}">
     <title>Title</title>
 </head>
 <body>
-
+<!--/*@thymesVar id="error" type="java.lang.String"*/-->
+    <p th:text="${error}"></p>
+    <a th:href="@{/registration/user}">
+        <img th:src="@{../static/img/logo-white.png}" class="img1">
+        <img th:src="@{../static/img/logo-color.png}" class="img">
+    </a>
 </body>
 </html>

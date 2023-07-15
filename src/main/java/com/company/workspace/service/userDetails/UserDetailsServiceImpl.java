@@ -2,6 +2,7 @@ package com.company.workspace.service.userDetails;
 
 import com.company.workspace.dao.UserDetailsRepository;
 import com.company.workspace.entity.UserDetails;
+import com.company.workspace.handler.UserRegistrationException;
 import com.company.workspace.service.date.DateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,12 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     @Override
     public void save(UserDetails userDetails) {
         userDetailsRepository.save(userDetails);
+    }
+
+    @Override
+    public void checkUserDetails(UserDetails userDetails) {
+        if (userDetailsRepository.existsByPhoneNumber(userDetails.getPhoneNumber()))
+            throw new UserRegistrationException("User with the same phone number already exists.");
     }
 
     @Override

@@ -9,12 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.validation.Valid;
-
 
 @Controller
 @RequiredArgsConstructor
@@ -44,8 +40,9 @@ public class OutController {
     public String registrationAsUserPost(@ModelAttribute("userForUser") User user, @ModelAttribute("userDetails") UserDetails userDetails) {
         System.out.println("POST --------- METHOD");
         userService.checkUser(user);
+        userDetailsService.checkUserDetails(userDetails);
         userDetailsService.saveUserDetails(userDetails);
-        userService.setUserDetails(user,userDetails);
+        userService.setUserDetails(user, userDetails);
         userService.saveUser(user);
         return "redirect:/login";
     }
@@ -62,8 +59,8 @@ public class OutController {
     }
 
     @ExceptionHandler(UserRegistrationException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public String handleUserRegistrationException(UserRegistrationException ex, RedirectAttributes redirectAttributes) {
+    public String handleUserRegistrationException(UserRegistrationException ex,RedirectAttributes redirectAttributes) {
+        System.out.println("-------------| handleUserRegistrationException |-------------");
         redirectAttributes.addFlashAttribute("error", ex.getMessage());
         return "redirect:/registration/error";
     }
