@@ -1,5 +1,6 @@
 package com.company.workspace.service.verification;
 
+import com.company.workspace.handler.UserRegistrationException;
 import org.springframework.stereotype.Service;
 import java.util.Random;
 
@@ -25,7 +26,9 @@ public class VerificationServiceImpl implements VerificationService{
     }
 
     @Override
-    public boolean checkVerificationCode(String code, String inputCode) {
-        return code.equals(inputCode);
+    public void checkVerificationCode(String code, String inputCode) {
+        if (!code.equals(inputCode)) {
+            throw new UserRegistrationException("Verification code was wrong, go back to the registration form and try again");
+        }
     }
 }

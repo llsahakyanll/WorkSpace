@@ -1,0 +1,364 @@
+/* ===== Google Font Import - Poppins ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #5956E9;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 280px;
+    width: 100%;
+    border-radius: 6px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container header {
+    position: relative;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.container header::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 3px;
+    width: 65px;
+    border-radius: 8px;
+    background-color: #5956E9;
+}
+
+.container form {
+    position: relative;
+    margin-top: 11px;
+    min-height: 290px;
+    background-color: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: .3s ease;
+    flex-direction: column;
+}
+
+.container form .form {
+    position: absolute;
+    background-color: #fff;
+    transition: 0.3s ease;
+}
+
+.container form .form.second {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+}
+
+form.secActive .form.second {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+form.secActive .form.first {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-100%);
+}
+
+.container form .title {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 6px 0;
+    color: #333;
+}
+
+.container form .fields {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+form .fields .input-field {
+    display: flex;
+    position: relative;
+    width: 100%;
+    flex-direction: column;
+    margin: 4px 0;
+}
+.error {
+    color: red !important;
+}
+.input-field label,
+.error{
+    font-size: 12px;
+    font-weight: 500;
+    color: #2e2e2e;
+    transition: all .3s ease;
+}
+
+.input-field input, select {
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 42px;
+    transition: all .3s ease;
+    margin: 8px 0;
+}
+.input-field input:hover, select:hover {
+    border: 1px solid #5956E9;
+}
+.input-field:hover label {
+    color: #5956E9;
+}
+.input-field input :focus,
+.input-field select:focus {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
+}
+.category > label {
+    transition: all .3s ease;
+    border-radius: 10px;
+}
+.category > label:hover {
+    background: #5956E9;
+}
+.category > label:hover  svg > path , .category > label:hover  svg > path {
+    fill: #FFFFFF;
+}
+.category > label svg > path , .category > label  svg > path {
+    transition: all .3s ease;
+}
+.input-field select,
+.input-field input[type="date"] {
+    color: #707070;
+}
+
+.input-field input[type="date"]:valid {
+    color: #333;
+}
+
+.container form input[type="submit"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-width: 200px;
+    width: 100%;
+    border: 1px solid #5956E9;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #5956E9;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.container form input[type="submit"]:hover {
+    color: #5956E9;
+    background: transparent;
+    transform: translate(0px,-10px);
+}
+.container form .btnText {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+form button:hover {
+    background-color: #265df2;
+}
+
+form button i,
+form .backBtn i {
+    margin: 0 6px;
+}
+
+form .backBtn i {
+    transform: rotate(180deg);
+}
+
+form .buttons {
+    display: flex;
+    align-items: center;
+}
+
+form .buttons button, .backBtn {
+    margin-right: 14px;
+}
+
+#dot-1:checked ~ .category label .one,
+#dot-2:checked ~ .category label .two {
+    background: #4070f4;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 5px;
+}
+
+form input[type="radio"] {
+    display: none;
+}
+input[type="file"] {
+    position: relative;
+    width: 280px !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+input[type="file"]::file-selector-button {
+    width: 136px;
+    color: transparent;
+}
+
+/* Faked label styles and icon */
+input[type="file"]::before {
+    position: absolute;
+    pointer-events: none;
+    top: 10px;
+    left: 16px;
+    height: 20px;
+    width: 20px;
+    content: "";
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230964B0'%3E%3Cpath d='M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3h-2zM7 9l1.41 1.41L11 7.83V16h2V7.83l2.59 2.58L17 9l-5-5-5 5z'/%3E%3C/svg%3E");
+}
+
+input[type="file"]::after {
+    position: absolute;
+    pointer-events: none;
+    top: 11px;
+    left: 40px;
+    color: #0964b0;
+    content: "Upload File";
+}
+
+/* ------- From Step 1 ------- */
+
+/* file upload button */
+input[type="file"]::file-selector-button {
+    border-radius: 4px;
+    padding: 0 16px;
+    height: 40px;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+    margin-right: 16px;
+    transition: background-color 200ms;
+}
+
+/* file upload button hover state */
+input[type="file"]::file-selector-button:hover {
+    background-color: #f3f4f6;
+}
+
+/* file upload button active state */
+input[type="file"]::file-selector-button:active {
+    background-color: #e5e7eb;
+}
+/*form input[type="file"] {
+    background: transparent;
+    border: none;
+    outline: none;
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+form input[type="file"]::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.imageFile,
+.pdfFile {
+    cursor: pointer;
+    width: 200px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #4070f4;
+    background: #4070f4;
+    color: #FFFFFF !important;
+    border-radius: 20px;
+    transition: .3s ease;
+}
+
+.imageFile:hover,
+.pdfFile:hover {
+    background: #FFFFFF;
+    color: #4070f4 !important;
+}*/
+
+.dot {
+    width: 40px;
+    display: flex;
+    height: 40px;
+}
+.category {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+.dot svg {
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: cover;
+}
+
+.dot svg path {
+    transition: .3s ease;
+    fill: #5956E9;
+}
+
+.category > label {
+    cursor: pointer;
+    width: 40px !important;
+    height: 40px !important;
+}
+#dot-1:checked ~ .category label .one path,
+#dot-2:checked ~ .category label .two path {
+    fill: #FFFFFF;
+
+}
+@media (max-width: 750px) {
+    .container form {
+        overflow-y: scroll;
+    }
+
+    .container form::-webkit-scrollbar {
+        display: none;
+    }
+
+    form .fields .input-field {
+        width: calc(100% / 2 - 15px);
+    }
+}
+
+@media (max-width: 550px) {
+    form .fields .input-field {
+        width: 100%;
+    }
+}

@@ -1,12 +1,16 @@
 package com.company.workspace.controller;
 
+import com.company.workspace.dto.UserDTO;
+import com.company.workspace.dto.VerificationDTO;
 import com.company.workspace.entity.User;
 import com.company.workspace.entity.UserDetails;
+import com.company.workspace.handler.UserLoginException;
 import com.company.workspace.handler.UserRegistrationException;
+import com.company.workspace.service.email.EmailService;
 import com.company.workspace.service.user.UserService;
 import com.company.workspace.service.userDetails.UserDetailsService;
+import com.company.workspace.service.verification.VerificationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +22,29 @@ public class OutController {
 
     private final UserService userService;
     private final UserDetailsService userDetailsService;
+    private final EmailService emailService;
+    private final VerificationService verificationService;
+
+    // -----------------------------| Login |----------------------------- //
 
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("user", userService.createUserDTO());
         return "login";
     }
 
+    @PostMapping("/authenticate")
+    public String loginPost(@ModelAttribute("user") UserDTO userDTO) {
+        userService.checkUser(userDTO);
+        return "redirect:/home";
+    }
+    @GetMapping("/login/error")
+    public String loginError(Model model) {
+        model.addAttribute("user", userService.createUserDTO());
+        return "login";
+    }
+
+    // -----------------------------| Registration |----------------------------- //
     @GetMapping("/registration")
     public String registration() {
         return "registration";
@@ -37,19 +58,31 @@ public class OutController {
     }
 
     @PostMapping("/registration/user")
-    public String registrationAsUserPost(@ModelAttribute("userForUser") User user, @ModelAttribute("userDetails") UserDetails userDetails) {
+    public String registrationAsUserPost(@ModelAttribute("userForUser") User user, @ModelAttribute("userDetails") UserDetails userDetails, RedirectAttributes redirectAttributes) {
         System.out.println("POST --------- METHOD");
-        userService.checkUser(user);
+        userService.checkUserEmail(user);
         userDetailsService.checkUserDetails(userDetails);
         userDetailsService.saveUserDetails(userDetails);
         userService.setUserDetails(user, userDetails);
         userService.saveUser(user);
-        return "redirect:/login";
+        redirectAttributes.addFlashAttribute("email" , user);
+        return "redirect:/registration/mail";
     }
 
-    @GetMapping("/registration/error")
-    public String registrationError() {
-        return "registration_error";
+    @GetMapping("/registration/mail")
+    public String registrationMail(@ModelAttribute("email") User user, Model model) {
+        VerificationDTO verificationDTO = new VerificationDTO();
+        verificationDTO.setCode(emailService.sendVerificationCode(user.getEmail()));
+        verificationDTO.setUserId(user.getId());
+        model.addAttribute("verificationDTO", verificationDTO);
+        return "registration_mail";
+    }
+
+    @PostMapping("/registration/mail")
+    public String registrationMailPost(@ModelAttribute("verificationDTO") VerificationDTO verificationDTO) {
+        System.out.println("----------------| /registration/mail |---------------------");
+        verificationService.checkVerificationCode(verificationDTO.getCode(), verificationDTO.getNumber().toString());
+        return "redirect:/login";
     }
 
     @GetMapping("/registration/company")
@@ -58,10 +91,24 @@ public class OutController {
         return "registration_company";
     }
 
+    @GetMapping("/registration/error")
+    public String registrationError() {
+        return "registration_error";
+    }
+
+    // -----------------------------| ExceptionHandler |----------------------------- //
+
     @ExceptionHandler(UserRegistrationException.class)
     public String handleUserRegistrationException(UserRegistrationException ex,RedirectAttributes redirectAttributes) {
         System.out.println("-------------| handleUserRegistrationException |-------------");
         redirectAttributes.addFlashAttribute("error", ex.getMessage());
         return "redirect:/registration/error";
+    }
+
+    @ExceptionHandler(UserLoginException.class)
+    public String handleUserLoginException(UserLoginException ex,RedirectAttributes redirectAttributes) {
+        System.out.println("-------------| UserLoginException |-------------");
+        redirectAttributes.addFlashAttribute("error", ex.getMessage());
+        return "redirect:/login/error";
     }
 }

@@ -3,8 +3,10 @@ package com.company.workspace.service.user;
 
 import com.company.workspace.dao.AuthorityRepository;
 import com.company.workspace.dao.UserRepository;
+import com.company.workspace.dto.UserDTO;
 import com.company.workspace.entity.Authority;
 import com.company.workspace.entity.User;
+import com.company.workspace.handler.UserLoginException;
 import com.company.workspace.handler.UserRegistrationException;
 import com.company.workspace.service.date.DateService;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +36,7 @@ public class UserServiceImpl implements  UserService{
     // Adding Authority And Setting Enabled
     public void saveUser(User user) {
         System.out.println("saveUser Method");
-        checkUser(user);
+        checkUserEmail(user);
         user.setEnabled(true);
         List<Authority> list = new ArrayList<>();
         Authority authority = authorityRepository.findById(1L).orElse(null);
@@ -65,6 +67,11 @@ public class UserServiceImpl implements  UserService{
     }
 
     @Override
+    public UserDTO createUserDTO() {
+        return new UserDTO();
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username);
         if (user == null) {
@@ -86,8 +93,18 @@ public class UserServiceImpl implements  UserService{
     }
 
     @Override
-    public void checkUser(User user) {
+    public void checkUserEmail(User user) {
         if (userRepository.existsByEmail(user.getEmail()))
             throw new UserRegistrationException("User with the same email already exists.");
+    }
+
+    @Override
+    public void checkUser(UserDTO userDTO) {
+        User user = userRepository.findByEmail(userDTO.getEmail());
+        String password = userDTO.getPassword();
+
+        if (user == null || !BCrypt.checkpw(password, user.getPassword())) {
+              throw new UserLoginException("Email or Password was wrong.");
+        }
     }
 }

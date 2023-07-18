@@ -13,7 +13,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #4070f4;
+    background: #5956E9;
 }
 
 .container {
@@ -42,7 +42,7 @@ body {
     height: 3px;
     width: 126px;
     border-radius: 8px;
-    background-color: #4070f4;
+    background-color: #5956E9;
 }
 
 .container form {
@@ -110,6 +110,7 @@ form .fields .input-field {
     font-size: 12px;
     font-weight: 500;
     color: #2e2e2e;
+    transition: all .3s ease;
 }
 
 .input-field input, select {
@@ -121,14 +122,32 @@ form .fields .input-field {
     border: 1px solid #aaa;
     padding: 0 15px;
     height: 42px;
+    transition: all .3s ease;
     margin: 8px 0;
 }
-
+.input-field input:hover, select:hover {
+    border: 1px solid #5956E9;
+}
+.input-field:hover label {
+    color: #5956E9;
+}
 .input-field input :focus,
 .input-field select:focus {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
 }
-
+.category > label {
+    transition: all .3s ease;
+    border-radius: 10px;
+}
+.category > label:hover {
+    background: #5956E9;
+}
+.category > label:hover  svg > path , .category > label:hover  svg > path {
+    fill: #FFFFFF;
+}
+.category > label svg > path , .category > label  svg > path {
+    transition: all .3s ease;
+}
 .input-field select,
 .input-field input[type="date"] {
     color: #707070;
@@ -145,16 +164,21 @@ form .fields .input-field {
     height: 45px;
     max-width: 200px;
     width: 100%;
-    border: none;
+    border: 1px solid #5956E9;
     outline: none;
     color: #fff;
     border-radius: 5px;
     margin-top: 35px;
-    background-color: #4070f4;
+    background-color: #5956E9;
     transition: all 0.3s linear;
     cursor: pointer;
 }
 
+.container form input[type="submit"]:hover {
+    color: #5956E9;
+    background: transparent;
+    transform: translate(0px,-10px);
+}
 .container form .btnText {
     font-size: 14px;
     font-weight: 400;
@@ -302,7 +326,7 @@ form input[type="file"]::-webkit-file-upload-button {
 
 .dot svg path {
     transition: .3s ease;
-    fill: #4070f4;
+    fill: #5956E9;
 }
 
 .category > label {

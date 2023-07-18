@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{../static/css/registration_mail.css}">
+    <title>Title</title>
+</head>
+<body>
+    <a th:href="@{/registration/user}">
+        <img th:src="@{../static/img/logo-white.png}" class="img1">
+        <img th:src="@{../static/img/logo-color.png}" class="img">
+    </a>
+    <!--/*@thymesVar id="verificationDTO" type="com.company.workspace.dto.VerificationDTO"*/-->
+    <form th:action="@{/registration/mail}" th:object="${verificationDTO}" method="post">
+        <div class="input-box">
+            <label for="value1">______</label>
+            <input type="number"
+                   oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                   maxlength="6" id="value1" th:field="*{number}">
+        </div>
+        <input type="hidden" th:field="*{code}" id="code">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

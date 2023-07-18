@@ -2,9 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{../static/css/loader.css}" rel="stylesheet">
+    <link th:href="@{../static/css/login.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>Title</title>
 </head>
 <body>
-
+<div class="loader"></div>
+<div class="container">
+    <header>Log in</header>
+    <!--/*@thymesVar id="error" type="java.lang.String"*/-->
+    <p th:text="${error}" class="error"></p>
+    <form th:action="@{/authenticate}" th:object="${user}" id="registrationForm" method="post">
+        <div class="fields">
+            <div class="input-field">
+                <label for="email">Email</label>
+                <input type="text" id="email" placeholder="Enter your email" th:field="*{email}" required>
+            </div>
+            <div class="input-field">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password" th:field="*{password}" required>
+            </div>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<script th:src="@{../static/js/loader.js}"></script>
 </body>
 </html>

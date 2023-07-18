@@ -1,6 +1,7 @@
 package com.company.workspace.service.user;
 
 import com.company.workspace.entity.User;
+import com.company.workspace.dto.UserDTO;
 import com.company.workspace.entity.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -11,6 +12,7 @@ public interface UserService extends UserDetailsService {
     User findById(Long id);
     void setUserDetails(User user, UserDetails userDetails);
     User createUser();
-
-    void checkUser(User user);
+    UserDTO createUserDTO();
+    void checkUserEmail(User user);
+    void checkUser(UserDTO userDTO);
 }
