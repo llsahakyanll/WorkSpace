@@ -100,11 +100,17 @@ public class UserServiceImpl implements  UserService{
 
     @Override
     public void checkUser(UserDTO userDTO) {
+        System.out.println("checkUser Method");
         User user = userRepository.findByEmail(userDTO.getEmail());
+        if (user == null){
+            System.out.println("user is Null in checkUser Method");
+            throw new UserLoginException("Email or Password was wrong.");
+        }
         String password = userDTO.getPassword();
-
-        if (user == null || !BCrypt.checkpw(password, user.getPassword())) {
-              throw new UserLoginException("Email or Password was wrong.");
+        System.out.println(user);
+        if (!BCrypt.checkpw(password, user.getPassword())) {
+            System.out.println("Password was not equals in checkUser Method");
+            throw new UserLoginException("Email or Password was wrong.");
         }
     }
 }

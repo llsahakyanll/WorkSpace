@@ -1,5 +1,6 @@
 package com.company.workspace.controller;
 
+import org.apache.log4j.Logger;
 import com.company.workspace.dto.UserDTO;
 import com.company.workspace.dto.VerificationDTO;
 import com.company.workspace.entity.User;
@@ -24,27 +25,34 @@ public class OutController {
     private final UserDetailsService userDetailsService;
     private final EmailService emailService;
     private final VerificationService verificationService;
+    private static final Logger logger = Logger.getLogger(OutController.class);
 
     // -----------------------------| Login |----------------------------- //
 
     @GetMapping("/login")
     public String login(Model model) {
+        logger.info("/login + in Login Method");
         model.addAttribute("user", userService.createUserDTO());
         return "login";
     }
 
     @PostMapping("/authenticate")
     public String loginPost(@ModelAttribute("user") UserDTO userDTO) {
+        logger.info("/authenticate");
+        logger.info(userDTO.toString());
         userService.checkUser(userDTO);
         return "redirect:/home";
     }
+
     @GetMapping("/login/error")
     public String loginError(Model model) {
+        logger.info("/login/error");
         model.addAttribute("user", userService.createUserDTO());
         return "login";
     }
 
     // -----------------------------| Registration |----------------------------- //
+
     @GetMapping("/registration")
     public String registration() {
         return "registration";
@@ -59,7 +67,6 @@ public class OutController {
 
     @PostMapping("/registration/user")
     public String registrationAsUserPost(@ModelAttribute("userForUser") User user, @ModelAttribute("userDetails") UserDetails userDetails, RedirectAttributes redirectAttributes) {
-        System.out.println("POST --------- METHOD");
         userService.checkUserEmail(user);
         userDetailsService.checkUserDetails(userDetails);
         userDetailsService.saveUserDetails(userDetails);
@@ -80,7 +87,6 @@ public class OutController {
 
     @PostMapping("/registration/mail")
     public String registrationMailPost(@ModelAttribute("verificationDTO") VerificationDTO verificationDTO) {
-        System.out.println("----------------| /registration/mail |---------------------");
         verificationService.checkVerificationCode(verificationDTO.getCode(), verificationDTO.getNumber().toString());
         return "redirect:/login";
     }
@@ -100,15 +106,14 @@ public class OutController {
 
     @ExceptionHandler(UserRegistrationException.class)
     public String handleUserRegistrationException(UserRegistrationException ex,RedirectAttributes redirectAttributes) {
-        System.out.println("-------------| handleUserRegistrationException |-------------");
         redirectAttributes.addFlashAttribute("error", ex.getMessage());
         return "redirect:/registration/error";
     }
 
-    @ExceptionHandler(UserLoginException.class)
+    /*@ExceptionHandler(UserLoginException.class)
     public String handleUserLoginException(UserLoginException ex,RedirectAttributes redirectAttributes) {
-        System.out.println("-------------| UserLoginException |-------------");
+        logger.info("@ExceptionHandler(UserLoginException.class)");
         redirectAttributes.addFlashAttribute("error", ex.getMessage());
         return "redirect:/login/error";
-    }
+    }*/
 }
