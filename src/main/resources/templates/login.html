@@ -13,7 +13,7 @@
     <header>Log in</header>
     <!--/*@thymesVar id="error" type="java.lang.String"*/-->
     <p th:text="${error}" class="error"></p>
-    <form th:action="@{/authenticate}" th:object="${user}" id="registrationForm" method="post">
+    <form th:action="@{/authenticate}" th:object="${user}" method="post">
         <div class="fields">
             <div class="input-field">
                 <label for="email">Email</label>

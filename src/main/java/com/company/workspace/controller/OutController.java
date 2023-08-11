@@ -41,6 +41,7 @@ public class OutController {
         logger.info("/authenticate");
         logger.info(userDTO.toString());
         userService.checkUser(userDTO);
+        logger.info("End /authenticate");
         return "redirect:/home";
     }
 
@@ -110,10 +111,10 @@ public class OutController {
         return "redirect:/registration/error";
     }
 
-    /*@ExceptionHandler(UserLoginException.class)
+    @ExceptionHandler(UserLoginException.class)
     public String handleUserLoginException(UserLoginException ex,RedirectAttributes redirectAttributes) {
         logger.info("@ExceptionHandler(UserLoginException.class)");
         redirectAttributes.addFlashAttribute("error", ex.getMessage());
         return "redirect:/login/error";
-    }*/
+    }
 }

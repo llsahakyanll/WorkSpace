@@ -1,6 +1,7 @@
 package com.company.workspace.service.user;
 
 
+import com.company.workspace.controller.OutController;
 import com.company.workspace.dao.AuthorityRepository;
 import com.company.workspace.dao.UserRepository;
 import com.company.workspace.dto.UserDTO;
@@ -10,6 +11,7 @@ import com.company.workspace.handler.UserLoginException;
 import com.company.workspace.handler.UserRegistrationException;
 import com.company.workspace.service.date.DateService;
 import lombok.RequiredArgsConstructor;
+import org.apache.log4j.Logger;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,6 +28,7 @@ public class UserServiceImpl implements  UserService{
     private final UserRepository userRepository;
     private final AuthorityRepository authorityRepository;
     private final DateService dateService;
+    private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
 
     @Override
     public User findByEmail(String email) {
@@ -100,17 +103,18 @@ public class UserServiceImpl implements  UserService{
 
     @Override
     public void checkUser(UserDTO userDTO) {
-        System.out.println("checkUser Method");
+        logger.info("checkUser Method");
+        logger.info(userDTO);
         User user = userRepository.findByEmail(userDTO.getEmail());
         if (user == null){
             System.out.println("user is Null in checkUser Method");
             throw new UserLoginException("Email or Password was wrong.");
         }
         String password = userDTO.getPassword();
-        System.out.println(user);
         if (!BCrypt.checkpw(password, user.getPassword())) {
             System.out.println("Password was not equals in checkUser Method");
             throw new UserLoginException("Email or Password was wrong.");
         }
+        logger.info("End checkUser Method");
     }
 }
